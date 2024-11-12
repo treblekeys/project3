@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="project_3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="project_3.js"></script>
+</head>
+<body>
+    <form>
+        <input id="name_input" type="text" placeholder="Name">
+        <label for="name_input">Enter your name</label>
+        <button type="button" onclick="startQuiz()" class="btn btn-primary">Start the Quiz</button>
+    </form>
+
+    <div>
+        <ul>
+            <li onclick="selectQuiz('quiz_1')">Quiz 1</li> 
+            <li onclick="selectQuiz('quiz_2')">Quiz 2</li>
+        </ul>
+    </div>
+
+    <div id="scoreboard">
+        <p>Student: <span id="studentName"></span></p>
+        <p>Time: <span id="timer">00:00</span></p>
+        <p id="questionCount">Question 1 of ?</p>
+    </div>
+
+    <div id="view_quiz"></div>
+
+    <script id="quiz_view1" type="text/x-handlebars-template">
+        <div class="quiz_body1">
+            <h3 class="question_title">{{question}}</h3>
+            {{#if choices}}
+                <div>
+                    {{#each choices}}
+                        <button class="choice-btn btn btn-primary" data-index="{{index}}">{{choice}}</button>
+                    {{/each}}
+                </div>
+            {{/if}}
+            {{#if narrative}}
+                <input type="text" id="narrativeAnswer" placeholder="Answer">
+                <button id="submitNarrative" class="btn btn-primary">Submit</button>
+            {{/if}}
+            {{#if images}}
+                <div>
+                    {{#each images}}
+                        <img src="{{url}}" alt="{{img_name}}" class="img-choice" style="width:100px; cursor:pointer;">
+                    {{/each}}
+                </div>
+            {{/if}}
+        </div>
+    </script>
+</body>
+</html>
